@@ -35,7 +35,7 @@ def binDistr(n, p, i):
 # print(binDistr(20,0.2, 4))
 
 #compute likelihood
-dat['likelihood'] = binDistr(20, dat['pTreatment'], 4);
+dat['likelihood'] = binDistr(200, dat['pTreatment'], 40);
 
 #multiply likelihood with priors
 dat['numerator'] = dat['likelihood']*dat['prior']
@@ -49,13 +49,12 @@ print(prData)
 dat['posterior'] = dat['numerator']/prData
 print(dat)
 
-#check sum of probabilities in priors/posteriors
-print(dat['posterior'].sum())
-print(dat['prior'].sum())
+# #check sum of probabilities in priors/posteriors
+# print(dat['posterior'].sum())
+# print(dat['prior'].sum())
 
 #plot barplots
 fig, ax = plt.subplots(1,3, figsize = (16,4))
-
 
 #priors
 ax[0].bar(np.arange(len(dat['prior'])), dat['prior'])
@@ -75,19 +74,7 @@ plt.sca(ax[2])
 plt.xticks(np.arange(len(dat['prior'])), dat['model'])
 plt.title('Posterior')
 
-
-# plt.bar(np.arange(len(dat['prior'])), dat['prior'])
-# plt.xticks(np.arange(len(dat['prior'])), dat['model'])
-# plt.show()
-
-# #likelihood
-# plt.bar(np.arange(len(dat['prior'])), dat['prior'])
-# plt.xticks(np.arange(len(dat['prior'])), dat['model'])
-# plt.show()
-
-# #posterioirs
-# plt.bar(np.arange(len(dat['prior'])), dat['prior'])
-# plt.xticks(np.arange(len(dat['prior'])), dat['model'])
-
-
 plt.show()
+
+#is the treatment more effective than control?
+print("sum of p < 0.5: ", dat['posterior'][0:4].sum())
