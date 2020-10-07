@@ -1,7 +1,8 @@
+import math as mat
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.special.basic import factorial
+
 
 #get input on alpha and beta
 print("Enter alpha: ")
@@ -17,7 +18,8 @@ def betaDistr(alpha, beta):
     '''
     dat = pd.DataFrame(columns=['p', 'probDensity'])
     dat['p'] = np.arange(0,1, 0.01)
-    constant = factorial(alpha+beta-1)/(factorial(alpha-1)*factorial   (beta-1))
+    constant = mat.gamma(alpha+beta)/(mat.gamma(alpha)*mat.gamma(beta))
+    print("constant = ", constant)
     getProb = lambda x: constant*(x**(alpha-1))*(1-x)**(beta-1)
     dat['probDensity']= pd.DataFrame(list(map(getProb, dat['p'])))
     print(dat)
