@@ -19,20 +19,39 @@ def betaDistr(alpha, beta):
     '''
     plot beta distribution
     '''
-    dat = pd.DataFrame(columns=['p', 'probDensity'])
+    dat = pd.DataFrame(columns=['p', 'prior'])
     dat['p'] = np.arange(0,1, 0.01)
     constant = mat.gamma(alpha+beta)/(mat.gamma(alpha)*mat.gamma(beta))
     print("constant = ", constant)
     getProb = lambda x: constant*(x**(alpha-1))*(1-x)**(beta-1)
-    dat['probDensity']= pd.DataFrame(list(map(getProb, dat['p'])))
+    dat['prior']= pd.DataFrame(list(map(getProb, dat['p'])))
     print(dat)
 
-    #plot density
-    plt.figure()
-    plt.plot(dat['p'], dat['probDensity'])
-    plt.xlabel('P')
-    plt.ylabel('Probability Density')
-    plt.title('Beta Distribution')
-    plt.show()
+    # #plot density
+    # plt.figure()
+    # plt.plot(dat['p'], dat['probDensity'])
+    # plt.xlabel('P')
+    # plt.ylabel('Probability Density')
+    # plt.title('Beta Distribution')
+    # plt.show()
 
-betaDistr(alpha, beta)
+    return dat
+
+dat = betaDistr(alpha, beta)
+
+#case where n = 1; x = 0
+#likelihood = 1-prior
+
+dat['likelihood'] = 1- dat['p']
+dat['numerator'] = dat['prior']*dat['likelihood']
+dat['denominator'] = dat['numerator'].sum()
+dat['posterior'] = dat['numerator']/dat['denominator']
+print(dat.head(31))
+
+#plot density
+plt.figure()
+plt.plot(dat['p'], dat['posterior'])
+plt.xlabel('P')
+plt.ylabel('Probability Density')
+plt.title('Posterior Distribution')
+plt.show()

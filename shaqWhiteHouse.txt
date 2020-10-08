@@ -18,12 +18,12 @@ def binDistr(n, p, i):
 
 print("Enter the number of trials: ")
 num = input()
-# print("Enter the number of successes: ")
-# success = input()
+print("Enter the number of successes: ")
+success = input()
 print("Enter the probability of successes: ")
 p = input()
 
-# print(binDistr(num, p, success))
+print(binDistr(num, p, success))
 
 
 #create a dataframe for trial and probability
