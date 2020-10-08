@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 
 
 #get input on alpha and beta
+##the bigger the alpha is relative
+##to beta, the more we shift the
+##weight of the curve to the right
 print("Enter alpha: ")
 alpha = input()
 
