@@ -1,3 +1,8 @@
+#######################################
+#this script plots beta dsitribution
+#with inputs for alpha and beta
+#######################################
+
 import math as mat
 import pandas as pd
 import numpy as np
@@ -14,6 +19,11 @@ alpha = input()
 print("Enter beta: ")
 beta = input()
 
+# print("Enter number of trials (n): ")
+# n = input()
+
+# print("Enter number of successes (x): ")
+# x = input()
 
 def betaDistr(alpha, beta):
     '''
@@ -27,18 +37,21 @@ def betaDistr(alpha, beta):
     dat['prior']= pd.DataFrame(list(map(getProb, dat['p'])))
     print(dat)
 
-    # #plot density
-    # plt.figure()
-    # plt.plot(dat['p'], dat['probDensity'])
-    # plt.xlabel('P')
-    # plt.ylabel('Probability Density')
-    # plt.title('Beta Distribution')
-    # plt.show()
+    #plot density
+    plt.figure()
+    plt.plot(dat['p'], dat['prior'])
+    plt.xlabel('P')
+    plt.ylabel('Probability Density')
+    plt.title('Beta Distribution')
+    plt.show()
 
     return dat
 
 dat = betaDistr(alpha, beta)
 
+#######################################
+#compute posterior manually
+#######################################
 #case where n = 1; x = 0
 #likelihood = 1-prior
 
@@ -48,10 +61,16 @@ dat['denominator'] = dat['numerator'].sum()
 dat['posterior'] = dat['numerator']/dat['denominator']
 print(dat.head(31))
 
-#plot density
-plt.figure()
-plt.plot(dat['p'], dat['posterior'])
-plt.xlabel('P')
-plt.ylabel('Probability Density')
-plt.title('Posterior Distribution')
-plt.show()
+# #plot density
+# plt.figure()
+# plt.plot(dat['p'], dat['posterior'])
+# plt.xlabel('P')
+# plt.ylabel('Probability Density')
+# plt.title('Posterior Distribution')
+# plt.show()
+
+#######################################
+#compute posterior using conjugate 
+#shortcuts
+#######################################
+#code goes here
