@@ -5,12 +5,11 @@
 import pandas as pd
 import numpy as np
 import math as mat
-from itertools import permutations
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 #lambda is the mean and variance 
-#of the gamma distribution
+#of the poisson distribution
 print("Enter lambda: ")
 pLambda = input()
 
@@ -23,15 +22,15 @@ def poissonDistr(pLambda, pK):
     for a given value of lambda
     and k
 
-    k: the number of events
+    k: the number of occurances
     """
     dat = pd.DataFrame(columns=['pK', 'p'])
     dat['pK'] = np.arange(pK+1)
     # numerator = lambda x: ((pLambda**x)*(mat.exp(-1*pLambda)))
-    numerator = lambda x,y: ((x**y))
+    # numerator = lambda y: pLambda**y
     denominator = lambda x: mat.factorial(x)
     print(dat['pK'])
-    dat['numerator'] = pd.DataFrame(numerator(pLambda, dat['pK']))
+    dat['numerator'] = pd.DataFrame(list(map(lambda y: (pLambda**y)*(mat.exp(-1*pLambda)), range(pK+1))))
     dat['denominator'] = pd.DataFrame(list(map(denominator, dat['pK'])))
     dat['p'] = dat['numerator']/dat['denominator']
     print(dat)
