@@ -16,7 +16,7 @@ dat = pd.DataFrame(['m10', 'm20', 'm30', 'm40', 'm50', 'm60',
 #the treatment group
 dat['pTreatment'] = pd.DataFrame([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9])
 
-dat['prior'] = pd.DataFrame([0.06, 0.06, 0.06, 0.06, 0.52, 0.06, 0.06, 0.06, 0.06])
+dat['prior'] = pd.DataFrame([0.111, 0.111, 0.111, 0.111, 0.111, 0.111, 0.111, 0.111, 0.111])
 # print(dat)
 
 # #modify priors here
@@ -35,7 +35,7 @@ def binDistr(n, p, i):
 # print(binDistr(20,0.2, 4))
 
 #compute likelihood
-dat['likelihood'] = binDistr(200, dat['pTreatment'], 40);
+dat['likelihood'] = binDistr(4, dat['pTreatment'], 0);
 
 #multiply likelihood with priors
 dat['numerator'] = dat['likelihood']*dat['prior']
