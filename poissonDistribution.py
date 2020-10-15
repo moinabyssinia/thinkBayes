@@ -9,11 +9,11 @@ import matplotlib.pyplot as plt
 
 #lambda is the mean and variance 
 #of the poisson distribution
-print("Enter lambda: ")
-pLambda = input()
+# print("Enter lambda: ")
+# pLambda = input()
 
-print("Enter k: ")
-pK = input()
+# print("Enter k: ")
+# pK = input()
 
 def poissonDistr(pLambda, pK):
     """
@@ -21,7 +21,7 @@ def poissonDistr(pLambda, pK):
     for a given value of lambda
     and k
 
-    k: the number of occurances
+    pK: the number of occurances
     """
     dat = pd.DataFrame(columns=['pK', 'p'])
     dat['pK'] = np.arange(pK+1)
@@ -44,4 +44,4 @@ def poissonDistr(pLambda, pK):
     plt.title(titleName)
     plt.show()
 
-poissonDistr(pLambda, pK)
+# poissonDistr(pLambda, pK)
