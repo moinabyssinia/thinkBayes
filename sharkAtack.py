@@ -1,5 +1,11 @@
 ############################################
 #Shark Attack Problem 
+#the denominator - which is the integral
+#part of the bayes formula can not be done
+#analytically so a shortcut should be used
+#based on the gamma-Poisson conjugate 
+#meaning this solution is not the right 
+#way of doing it
 ############################################
 
 from gammaDistribution import gammaDistr
@@ -9,10 +15,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 #based on the observed 5 events 
-#I chose alpha = 5, and beta = 0.8
+#we have a mean of 2.1 attacks per year
+#I chose hyperparameters alpha = 2.1, and beta = 1
 #gammaPDF is the prior now
 pK = 5
-gammaPDF = gammaDistr(alpha = 5, beta = 0.8)
+gammaPDF = gammaDistr(alpha = 2.1, beta = 1)
 # print(gammaPDF.head(60))
 
 #get likelihood 
@@ -25,7 +32,7 @@ print(gammaPDF.head(60))
 plt.figure()
 plt.plot(gammaPDF[0], gammaPDF['likelihood'], color = 'purple')
 plt.xlabel('Lambda')
-plt.ylabel('Likelihood')
+plt.ylabel('Likelihood of observing {} shark attacks'.format(pK))
 plt.grid()
 titleName = "Likelihood - "+"K = "+str(pK)+";"
 plt.title(titleName)

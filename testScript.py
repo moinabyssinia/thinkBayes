@@ -1,17 +1,6 @@
 ###################################
 #test script
 ###################################
-import numpy as np
-import pandas as pd
-import math as mat
+from gammaDistribution import gammaDistr
 
-def test(options):
-    if options == "plot":
-        print("now plotting")
-    else:
-        print("nothing ordered!")
-
-
-test("")
-
-test("plot")
+gammaPDF = gammaDistr(alpha = 5.01, beta = 1.01)
