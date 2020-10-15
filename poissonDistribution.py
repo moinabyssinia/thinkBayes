@@ -6,7 +6,6 @@ import pandas as pd
 import numpy as np
 import math as mat
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 #lambda is the mean and variance 
 #of the poisson distribution
@@ -36,11 +35,13 @@ def poissonDistr(pLambda, pK):
     print(dat)
 
     #plot the distribution
-    sns.set_context("notebook", font_scale=1.5)
     plt.figure()
-    plt.plot(dat['pK'], dat['p'])
+    plt.plot(dat['pK'], dat['p'], color = 'green')
     plt.ylabel('P')
     plt.xlabel('K')
+    plt.grid()
+    titleName = "Poisson PMF - "+"lambda = "+str(pLambda)
+    plt.title(titleName)
     plt.show()
 
 poissonDistr(pLambda, pK)

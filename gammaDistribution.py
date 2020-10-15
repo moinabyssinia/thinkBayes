@@ -20,11 +20,11 @@ def gammaDistr():
     print("Enter beta: ")
     beta = input()
 
-    print("Enter x: ")
-    x = input()
+    # print("Enter x: ")
+    # x = input()
 
     constant = (beta**(alpha))/mat.gamma(alpha)
-    varx = np.arange(21)
+    varx = np.arange(0,21, 0.1)
     numerator1 = varx**(alpha-1)
     getExponent = lambda x: mat.exp(-beta*x)
     numerator2 = list(map(getExponent, varx))
@@ -33,7 +33,12 @@ def gammaDistr():
 
     #plot 
     plt.figure()
-    plt.plot(varx, gammaPDF)
+    plt.plot(varx, gammaPDF, color = 'red')
+    plt.xlabel('X')
+    plt.ylabel('PDF')
+    plt.grid()
+    titleName = "Gamma PDF - "+"alpha = "+str(alpha)+"; beta = "+str(beta)
+    plt.title(titleName)
     plt.show()
 
 gammaDistr()
