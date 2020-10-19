@@ -1,6 +1,9 @@
-############################################
+########################################################
 #Normal Distribution PDF 
-############################################
+
+##conjugate analytic solution
+#mu posterior = [tau0*mu0 + tau(sum(x))]/(tau0 + n*tau)
+#######################################################
 
 import pandas as pd
 import numpy as np
@@ -33,4 +36,25 @@ def normalDistr(mu, sigma):
     plt.grid()
     plt.show()
 
-normalDistr(8, 1)
+
+def conjugateNormal(tau0, tau, mu0, x):
+    """
+    this function computes the mu posterior
+    based on the normal-normal conjugate 
+    solution
+    """
+    numerator = tau0*mu0 + tau*(sum(x))
+    denominaor = tau0 + len(x)*tau
+    mupost = numerator/denominaor
+    taupost = denominaor
+    print("muPost =", mupost)
+    return mupost, taupost
+
+#get prior
+normalDistr(12, 4)
+
+#get posterior
+muPost = conjugateNormal(0.31, 0.25, 10.56, [7,10,10,8,4])[0]
+tauPost = conjugateNormal(0.31, 0.25, 10.56, [7,10,10,8,4])[1]
+normalDistr(muPost, tauPost)
+
