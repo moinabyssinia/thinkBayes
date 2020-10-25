@@ -3,6 +3,8 @@
 
 ##conjugate analytic solution
 #mu posterior = [tau0*mu0 + tau(sum(x))]/(tau0 + n*tau)
+#tau stays the same only tau0 gets updated with new 
+#learning
 #######################################################
 
 import pandas as pd
@@ -54,7 +56,7 @@ def conjugateNormal(tau0, tau, mu0, x):
 normalDistr(12, 4)
 
 #get posterior
-muPost = conjugateNormal(0.31, 0.25, 10.56, [7,10,10,8,4])[0]
-tauPost = conjugateNormal(0.31, 0.25, 10.56, [7,10,10,8,4])[1]
-normalDistr(muPost, tauPost)
+muPost = conjugateNormal(0.0625, 40.123, 12, [10.2])[0]
+tauPost = conjugateNormal(0.0625, 40.123, 12, [10.2])[1]
+normalDistr(muPost, (tauPost)**-0.5)
 

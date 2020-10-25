@@ -25,7 +25,7 @@ def gammaDistr(alpha, beta):
 
     constant = (beta**(alpha))/mat.gamma(alpha)
     # define a continuous variable
-    varx = np.arange(0,20, 0.1)
+    varx = np.arange(0,100, 0.1)
     numerator1 = varx**(alpha-1)
     getExponent = lambda x: mat.exp(-beta*x)
     numerator2 = list(map(getExponent, varx))
