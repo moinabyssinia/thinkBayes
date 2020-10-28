@@ -44,3 +44,16 @@ def gammaDistr(alpha, beta):
     plt.show()
 
     return df
+
+#posterior tau
+n = 1;
+alpha = 25;
+beta = 0.5;
+data = 10.2;
+mu = 10.0266;
+
+alpha = alpha + (n*0.5);
+beta = beta + 0.5*(data - mu)**2;
+
+gammaDistr(alpha, beta);
+

@@ -53,10 +53,10 @@ def conjugateNormal(tau0, tau, mu0, x):
     return mupost, taupost
 
 #get prior
-normalDistr(12, 4)
+normalDistr(12, 0.0625)
 
 #get posterior
-muPost = conjugateNormal(0.0625, 40.123, 12, [10.2])[0]
-tauPost = conjugateNormal(0.0625, 40.123, 12, [10.2])[1]
+muPost = conjugateNormal(0.0625, 52.39, 12, [10.2])[0]
+tauPost = conjugateNormal(0.0625, 52.39, 12, [10.2])[1]
 normalDistr(muPost, (tauPost)**-0.5)
 
